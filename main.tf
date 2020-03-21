@@ -13,6 +13,10 @@ resource "google_compute_network" "vpc_network" {
   name = "terraform-network"
 }
 
+resource "google_compute_project_default_network_tier" "default" {
+  network_tier = "STANDARD"
+}
+
 resource "google_compute_instance" "vm_control" {
   name         = "ans-control"
   machine_type = "f1-micro"
@@ -33,7 +37,7 @@ resource "google_compute_instance" "vm_control" {
 
 resource "google_compute_instance" "vm_dc" {
   name         = "domain-control"
-  machine_type = "f1-micro"
+  machine_type = "n1-standard-1"
 
   boot_disk {
     initialize_params {
@@ -50,7 +54,7 @@ resource "google_compute_instance" "vm_dc" {
 }
 
 resource "google_compute_firewall" "default" {
-  name    = "main-firewall"
+  name    = "ssh-firewall"
   network = google_compute_network.vpc_network.name
 
 
@@ -59,6 +63,42 @@ resource "google_compute_firewall" "default" {
     ports    = ["22"]
   }
 
+
+
   target_tags = ["controller"]
+
+}
+
+
+resource "google_compute_firewall" "default-2" {
+  name    = "rdp-firewall"
+  network = google_compute_network.vpc_network.name
+
+
+  allow {
+    protocol = "tcp"
+    ports    = ["3389"]
+  }
+
+
+
+  target_tags = ["dc"]
+
+}
+
+resource "google_compute_firewall" "default-3" {
+  name    = "winrm-ans-firewall"
+  network = google_compute_network.vpc_network.name
+
+
+  allow {
+    protocol = "tcp"
+    ports    = ["5986"]
+  }
+
+  source_tags = ["controller"]
+
+
+  target_tags = ["dc"]
 
 }
