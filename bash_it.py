@@ -8,7 +8,7 @@ def main():
     with open(sys.argv[1], "r") as f:
         lines = f.readlines()
         for line in lines:
-            line = line.strip()
+            line = line.rstrip()
             print("echo '%s' >> %s" % (line, name))
 
 
