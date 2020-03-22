@@ -6,5 +6,7 @@ $file = "$env:temp\ConfigureRemotingForAnsible.ps1"
 
 powershell.exe -ExecutionPolicy ByPass -File $file
 
+net user Administrator password123!
+
 
 
