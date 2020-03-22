@@ -15,7 +15,7 @@ echo '[defaults]' >> ansible/ansible.cfg
 echo 'inventory = hosts.yml' >> ansible/ansible.cfg
 
 # Write ansible inventory file, make sure to update IP and password
-echo 'windows:' >> ansible/hosts.yml
+echo 'domain_controllers:' >> ansible/hosts.yml
 echo '        hosts:' >> ansible/hosts.yml
 echo '            10.128.0.3' >> ansible/hosts.yml
 echo '        vars:' >> ansible/hosts.yml
