@@ -25,4 +25,21 @@ echo '            ansible_password: "replace"' >> ansible/hosts.yml
 echo '            ansible_winrm_transport: basic' >> ansible/hosts.yml
 echo '            ansible_winrm_server_cert_validation: ignore' >> ansible/hosts.yml
 
-ansible windows -m win_command -a "ipconfig"
+# Command to test if connection worked
+# ansible windows -m win_command -a "ipconfig"
+
+# Write domain controller playbook file
+echo '- name: Domain Controller creation' >> ansible/dc.yml
+echo '  hosts: domain_controllers' >> ansible/dc.yml
+echo '  serial: 1' >> ansible/dc.yml
+echo '' >> ansible/dc.yml
+echo '  tasks:' >> ansible/dc.yml
+echo '    - name: create or join domain controller' >> ansible/dc.yml
+echo '      win_domain:' >> ansible/dc.yml
+echo '        dns_domain_name: tform.test' >> ansible/dc.yml
+echo '        safe_mode_password: "password123!"' >> ansible/dc.yml
+echo '      register: reboot_check' >> ansible/dc.yml
+echo '' >> ansible/dc.yml
+echo '    - name: check if reboot is needed' >> ansible/dc.yml
+echo '      win_reboot:' >> ansible/dc.yml
+echo '      when: reboot_check.reboot_required' >> ansible/dc.yml
