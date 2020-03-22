@@ -21,7 +21,7 @@ echo '            10.128.0.3' >> ansible/hosts.yml
 echo '        vars:' >> ansible/hosts.yml
 echo '            ansible_connection: winrm' >> ansible/hosts.yml
 echo '            ansible_user: dle_pyc' >> ansible/hosts.yml
-echo '            ansible_password: "S@R0RNa#FPdN_r:"' >> ansible/hosts.yml
+echo '            ansible_password: "replace"' >> ansible/hosts.yml
 echo '            ansible_winrm_transport: basic' >> ansible/hosts.yml
 echo '            ansible_winrm_server_cert_validation: ignore' >> ansible/hosts.yml
 
