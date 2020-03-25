@@ -4,7 +4,7 @@ This project is being created to learn and test the capabilities of Terraform an
 
 ## Project Guidelines
 
-Wherever possible this project will try to use Infrastructure as Code and Native Configuration Management modules to reduce the need for custom scripts. 
+Wherever possible this project will try to use infrastructure as code and native configuration management modules to reduce the need for custom scripts. 
 
 
 # Ideas for machines
