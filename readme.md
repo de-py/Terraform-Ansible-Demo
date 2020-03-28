@@ -7,7 +7,7 @@ This project is being created to learn and test the capabilities of Terraform an
 Wherever possible this project will try to use infrastructure as code and native configuration management modules to reduce the need for custom scripts. 
 
 
-# Ideas for machines
+## Ideas for machines
 
 * Linux Ansible Controller
 * Domain Controller
