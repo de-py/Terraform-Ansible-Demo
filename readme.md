@@ -4,7 +4,7 @@ This project is being created to learn and test the capabilities of Terraform an
 
 ## Project Guidelines
 
-Wherever possible this project will try to use infrastructure as code and native configuration management modules to reduce the need for custom scripts. 
+Wherever possible this project will try to use infrastructure as code and native configuration management modules to reduce the need for custom scripts. That said, the initial set up of this demo may use scripts until I learn more about the methods for building in configuration. 
 
 
 ## Ideas for machines
@@ -17,3 +17,4 @@ Wherever possible this project will try to use infrastructure as code and native
 * Linux Logstash Server
 * Linux Elasticsearch Server
 * Kibana Server
+* HashiCorp Vault
