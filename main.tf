@@ -32,7 +32,31 @@ resource "google_compute_instance" "vm_control" {
     access_config {
     }
   }
+
+  metadata_startup_script = "curl -s https://raw.githubusercontent.com/de-py/Terraform-Demo/master/ans.sh > /home/ans.sh"
+
   tags = ["controller"]
+}
+
+resource "google_compute_instance" "vm_vault" {
+  name         = "hash-vault"
+  machine_type = "f1-micro"
+
+  boot_disk {
+    initialize_params {
+      image = "centos-cloud/centos-8"
+    }
+  }
+
+  network_interface {
+    network = google_compute_network.vpc_network.name
+    access_config {
+    }
+  }
+
+  metadata_startup_script = "curl -s https://raw.githubusercontent.com/de-py/Terraform-Demo/master/vault_setup.sh > /home/vault_setup.sh"
+
+  tags = ["vault"]
 }
 
 resource "google_compute_instance" "vm_dc" {
@@ -50,13 +74,14 @@ resource "google_compute_instance" "vm_dc" {
     access_config {
     }
   }
+
+
   tags = ["dc", "managed"]
 }
 
 resource "google_compute_firewall" "default" {
   name    = "ssh-firewall"
   network = google_compute_network.vpc_network.name
-
 
   allow {
     protocol = "tcp"
@@ -65,7 +90,7 @@ resource "google_compute_firewall" "default" {
 
 
 
-  target_tags = ["controller"]
+  target_tags = ["controller", "vault"]
 
 }
 
@@ -81,10 +106,10 @@ resource "google_compute_firewall" "default-2" {
   }
 
 
-
   target_tags = ["dc"]
 
 }
+
 
 resource "google_compute_firewall" "default-3" {
   name    = "winrm-ans-firewall"
@@ -97,6 +122,23 @@ resource "google_compute_firewall" "default-3" {
   }
 
   source_tags = ["controller"]
+
+
+  target_tags = ["dc"]
+
+}
+
+resource "google_compute_firewall" "default-4" {
+  name    = "vault-ldap"
+  network = google_compute_network.vpc_network.name
+
+
+  allow {
+    protocol = "tcp"
+    ports    = ["636"]
+  }
+
+  source_tags = ["vault"]
 
 
   target_tags = ["dc"]
