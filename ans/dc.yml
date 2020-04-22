@@ -1,0 +1,12 @@
+- name: Domain Controller creation
+  hosts: domain_controllers
+  serial: 1
+  tasks:
+    - name: create or join domain controller
+      win_domain:
+        dns_domain_name: tform.test
+        safe_mode_password: "password123!"
+      register: reboot_check
+    - name: check if reboot is needed
+      win_reboot:
+      when: reboot_check.reboot_required
