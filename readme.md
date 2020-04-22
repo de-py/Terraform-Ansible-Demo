@@ -18,3 +18,12 @@ Wherever possible this project will try to use infrastructure as code and native
 * Linux Elasticsearch Server
 * Kibana Server
 * HashiCorp Vault
+
+
+## Manual Steps
+
+1. Ans.sh should copied to /home/ans.sh. Move this to home directory and run it.
+2. Create Administrator password in gcp. Could be scripted but gets error in terraform.
+3. RDP into and run winans.ps1 on Windows Server for DC.
+4. Update IPs and password in hosts.yml
+5. Run ```ansible-playbook dc.yml``` (Can start to add user creation in AD)
