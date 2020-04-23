@@ -14,7 +14,7 @@ mkdir ansible
 curl -s https://raw.githubusercontent.com/de-py/Terraform-Demo/master/ans/ansible.cfg > ansible/ansible.cfg
 
 # Write ansible inventory file, make sure to update IP and password
-curl -s https://raw.githubusercontent.com/de-py/Terraform-Demo/master/ans/hosts.yml > ansible/dc.yml
+curl -s https://raw.githubusercontent.com/de-py/Terraform-Demo/master/ans/hosts.yml > ansible/hosts.yml
 
 
 # Command to test if connection worked
