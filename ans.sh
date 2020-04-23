@@ -1,5 +1,5 @@
-# Install updates
-sudo yum -y update
+# # Install updates
+# sudo yum -y update
 
 # Install ansible
 pip3 install --user ansible
