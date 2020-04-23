@@ -13,9 +13,11 @@
     - name: add users to domain for testing vault
       win_domain_user:
         name: "{{ item.name }}"
-        upn: "{{ item.name + '@' + active_directory_domain }}"
+        upn: "{{ item.name + '@tform.test' }}"
         groups: "{{ item.groups }}"
+        password: "{{ item.password}}"
+        enabled: yes
       with_items:
-        - { name: 'vault01', groups: 'Domain Admins'}
-        - { name: 'vault02'}
-        - { name: 'vault03'}
+        - { name: 'vault01', groups: 'Domain Admins', password: 'password123!'}
+        - { name: 'vault02', groups: 'Domain Users', password: 'password123!'}
+        - { name: 'vault03', groups: 'Domain Users', password: 'password123!'}
