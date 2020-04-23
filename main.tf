@@ -59,6 +59,27 @@ resource "google_compute_instance" "vm_vault" {
   tags = ["vault"]
 }
 
+
+resource "google_compute_instance" "vm_pki_ca" {
+  name         = "pki-ca"
+  machine_type = "f1-micro"
+
+  boot_disk {
+    initialize_params {
+      image = "centos-cloud/centos-8"
+    }
+  }
+
+  network_interface {
+    network = google_compute_network.vpc_network.name
+    access_config {
+    }
+  }
+
+
+  tags = ["ca"]
+}
+
 resource "google_compute_instance" "vm_dc" {
   name         = "domain-control"
   machine_type = "n1-standard-1"
@@ -90,7 +111,7 @@ resource "google_compute_firewall" "default" {
 
 
 
-  target_tags = ["controller", "vault"]
+  target_tags = ["controller", "vault", "ca"]
 
 }
 
