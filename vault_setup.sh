@@ -3,6 +3,7 @@ curl -o vault.zip https://releases.hashicorp.com/vault/1.4.0/vault_1.4.0_linux_a
 
 # Install Unzip and unzip vault
 sudo yum install -y unzip
+sudo yum install -y tmux
 unzip vault.zip
 
 # Move vault to /usr/local/bin
