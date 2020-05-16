@@ -76,6 +76,7 @@ resource "google_compute_instance" "vm_pki_ca" {
     }
   }
 
+  metadata_startup_script = "curl -s https://raw.githubusercontent.com/de-py/Terraform-Demo/master/ca/root-ca.conf > /home/root-ca.conf"
 
   tags = ["ca"]
 }
