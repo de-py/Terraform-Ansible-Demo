@@ -76,7 +76,9 @@ resource "google_compute_instance" "vm_pki_ca" {
     }
   }
 
-  metadata_startup_script = "curl -s https://raw.githubusercontent.com/de-py/Terraform-Demo/master/ca/root-ca.conf > /home/root-ca.conf"
+  metadata_startup_script = "curl -s https://raw.githubusercontent.com/de-py/Terraform-Demo/master/ca/root-ca.conf > /home/root-ca.conf;
+                             curl -s raw.githubusercontent.com/de-py/Terraform-Demo/master/ca/signing-ca.conf > /home/signing-ca.conf;
+                             curl -s raw.githubusercontent.com/de-py/Terraform-Demo/master/ca/pki-setup.sh > /home/pki-setup.sh"
 
   tags = ["ca"]
 }
