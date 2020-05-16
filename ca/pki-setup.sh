@@ -1,3 +1,7 @@
+curl -s https://raw.githubusercontent.com/de-py/Terraform-Demo/master/ca/root-ca.conf > root-ca.conf
+curl -s https://raw.githubusercontent.com/de-py/Terraform-Demo/master/ca/signing-ca.conf > signing-ca.conf
+
+
 # Creating Root CA
 
 # Steps pulled from https://pki-tutorial.readthedocs.io/en/latest/simple/index.html 
@@ -52,3 +56,10 @@ openssl req -new \
     -out ca/signing-ca.csr \
     -keyout ca/signing-ca/private/signing-ca.key
 
+# Create CA certificate
+# Will ask for same password again
+openssl ca \
+    -config root-ca.conf \
+    -in ca/signing-ca.csr \
+    -out ca/signing-ca.crt \
+    -extensions signing_ca_ext
