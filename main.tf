@@ -38,6 +38,45 @@ resource "google_compute_instance" "vm_control" {
   tags = ["controller"]
 }
 
+resource "google_compute_instance" "vm_logstash" {
+  name         = "logstash"
+  machine_type = "n1-standard-1"
+
+  boot_disk {
+    initialize_params {
+      image = "centos-cloud/centos-8"
+    }
+  }
+
+  network_interface {
+    network = google_compute_network.vpc_network.name
+    access_config {
+    }
+  }
+
+  tags = ["logstash", "linux"]
+}
+
+resource "google_compute_instance" "vm_elastic" {
+  name         = "elastic"
+  machine_type = "n1-standard-1"
+
+  boot_disk {
+    initialize_params {
+      image = "centos-cloud/centos-8"
+    }
+  }
+
+  network_interface {
+    network = google_compute_network.vpc_network.name
+    access_config {
+    }
+  }
+
+  tags = ["elastic", "linux"]
+}
+
+
 resource "google_compute_instance" "vm_vault" {
   name         = "hash-vault"
   machine_type = "f1-micro"
@@ -112,7 +151,7 @@ resource "google_compute_firewall" "default" {
 
 
 
-  target_tags = ["controller", "vault", "ca"]
+  target_tags = ["controller", "vault", "ca", "linux"]
 
 }
 
@@ -140,7 +179,24 @@ resource "google_compute_firewall" "default-3" {
 
   allow {
     protocol = "tcp"
-    ports    = ["5986"]
+    ports    = ["5986","5985"]
+  }
+
+  source_tags = ["controller"]
+
+
+  target_tags = ["dc"]
+
+}
+
+resource "google_compute_firewall" "default-35" {
+  name    = "winrm-ans-firewall2"
+  network = google_compute_network.vpc_network.name
+
+
+  allow {
+    protocol = "icmp"
+
   }
 
   source_tags = ["controller"]
