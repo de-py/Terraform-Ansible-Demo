@@ -1,5 +1,5 @@
-- name: Logstash Install
-  hosts: logstash
+- name: Elastic Install
+  hosts: elastic
   become: yes
   tasks:
     - name: Install Java openjdk
@@ -14,17 +14,14 @@
 
     - name: Configure Yum Repo
       yum_repository:
-        name: logstash-7.x
+        name: elasticsearch
         description: Elastic repository for 7.x packages
         baseurl: https://artifacts.elastic.co/packages/7.x/yum
         gpgcheck: yes
         gpgkey: https://artifacts.elastic.co/GPG-KEY-elasticsearch
         enabled: yes
 
-    - name: Install logstash
+    - name: Install Elastic
       yum: 
-        name: logstash
+        name: elasticsearch
         state: latest
-    
-    - name: Generate Logstash Service 
-      shell: /usr/share/logstash/bin/system-install /etc/logstash/startup.options systemd

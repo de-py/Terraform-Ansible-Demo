@@ -1,0 +1,7 @@
+# Settings file in YAML
+#
+
+path.data: /var/lib/logstash
+pipeline.ordered: auto
+http.host: 10.128.0.5
+path.logs: /var/log/logstash
