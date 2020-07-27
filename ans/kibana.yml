@@ -1,5 +1,5 @@
-- name: Elastic Install
-  hosts: elastic
+- name: Kibana Install
+  hosts: kibana
   become: yes
   tasks:
     - name: Install Java openjdk
@@ -14,19 +14,19 @@
 
     - name: Configure Yum Repo
       yum_repository:
-        name: elasticsearch
-        description: Elastic repository for 7.x packages
+        name: kibana-7.x
+        description: Kibana repository for 7.x packages
         baseurl: https://artifacts.elastic.co/packages/7.x/yum
         gpgcheck: yes
         gpgkey: https://artifacts.elastic.co/GPG-KEY-elasticsearch
         enabled: yes
 
-    - name: Install Elastic
+    - name: Install Kibana
       yum: 
-        name: elasticsearch
+        name: kibana
         state: latest
-      
-    - name: Start service elasticsearch, if not started
+
+    - name: Start service kibana, if not started
       service:
-        name: elasticsearch
+        name: kibana
         state: started
