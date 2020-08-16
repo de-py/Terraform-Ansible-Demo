@@ -1,4 +1,4 @@
-# Terraform (and Ansible) Demo
+# Terraform-Ansible Demo
 
 This project is being created to learn and test the capabilities of Terraform and Ansible. The focus of Terraform and Ansible will be to develop a full lab for testing offensive security techniques and detection capabilities. 
 
