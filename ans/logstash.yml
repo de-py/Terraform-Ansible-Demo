@@ -25,6 +25,11 @@
       yum: 
         name: logstash
         state: latest
+
+    - name: Download Logstash.yml
+      get_url:
+        url: https://raw.githubusercontent.com/de-py/Terraform-Ansible-Demo/master/elastic/logstash.yml
+        dest: /etc/logstash/logstash.yml
     
     - name: Generate Logstash Service 
       shell: /usr/share/logstash/bin/system-install /etc/logstash/startup.options systemd

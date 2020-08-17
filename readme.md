@@ -33,10 +33,10 @@ Wherever possible this project will try to use infrastructure as code and native
 ## Pre-Deployment Steps
 This section is to keep track of where data must be updated before running terraform apply or ansible-playbook. In the future this will be scripted as much as possible.
 1. ./ans/Hosts.yml, update external IPs and username (if using local ansible controller)
-2. In directory ./elastic/kibana.yml, update kibana with local IP of elastic server for ```elasticsearch.hosts: ["http://localhost:9200"]```
+2. In directory ./elastic/kibana.yml, update kibana with local IP of elastic server for ```elasticsearch.hosts: ["http://<changeme>:9200"]```
 3. In firewall.tf, update source_range on kibana-port to be the NAT address. Temporary until vpn is stood up. Temporary lab either way. 
 
 
 ## Todo
-- [] Create kibana.yml with server.host update
-- [] Configure authentication on kibana/elastic 
+- Create kibana.yml with server.host update
+- Configure authentication on kibana/elastic 

@@ -25,6 +25,12 @@
       yum: 
         name: kibana
         state: latest
+    
+    - name: Download Kibana.yml
+      get_url:
+            url: https://raw.githubusercontent.com/de-py/Terraform-Ansible-Demo/master/elastic/kibana.yml
+            dest: /etc/kibana/kibana.yml
+            
 
     - name: Start service kibana, if not started
       service:

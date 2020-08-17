@@ -25,7 +25,12 @@
       yum: 
         name: elasticsearch
         state: latest
-      
+
+    - name: Download Elastic.yml
+      get_url:
+        url: https://raw.githubusercontent.com/de-py/Terraform-Ansible-Demo/master/elastic/elasticsearch.yml
+        dest: /etc/elasticsearch/elasticsearch.yml
+
     - name: Start service elasticsearch, if not started
       service:
         name: elasticsearch
