@@ -4,7 +4,7 @@ resource "google_compute_instance" "vm_elastic" {
 
   boot_disk {
     initialize_params {
-      image = "centos-cloud/centos-8"
+      image = "debian-cloud/debian-10"
     }
   }
 
@@ -15,7 +15,7 @@ resource "google_compute_instance" "vm_elastic" {
   }
 
 
-  tags = ["elastic", "linux"]
+  tags = ["elastic", "linux","elk"]
 }
 
 resource "google_compute_instance" "vm_logstash" {
@@ -24,7 +24,7 @@ resource "google_compute_instance" "vm_logstash" {
 
   boot_disk {
     initialize_params {
-      image = "centos-cloud/centos-8"
+      image = "debian-cloud/debian-10"
     }
   }
 
@@ -35,7 +35,7 @@ resource "google_compute_instance" "vm_logstash" {
   }
 
 
-  tags = ["logstash", "linux"]
+  tags = ["logstash", "linux","elk"]
 }
 
 resource "google_compute_instance" "vm_kibana" {
@@ -44,7 +44,7 @@ resource "google_compute_instance" "vm_kibana" {
 
   boot_disk {
     initialize_params {
-      image = "centos-cloud/centos-8"
+      image = "debian-cloud/debian-10"
     }
   }
 
@@ -54,5 +54,15 @@ resource "google_compute_instance" "vm_kibana" {
     }
   }
 
-  tags = ["kibana", "linux"]
+  tags = ["kibana", "linux","elk"]
+}
+
+output "vm_elastic_ip" {
+    value = concat(google_compute_instance.vm_elastic.*.network_interface.0.access_config.0.nat_ip,google_compute_instance.vm_elastic.tags.*)
+}
+output "vm_logstash_ip" {
+    value = concat(google_compute_instance.vm_logstash.*.network_interface.0.access_config.0.nat_ip, google_compute_instance.vm_logstash.tags.*)
+}
+output "vm_kibana_ip" {
+    value = concat(google_compute_instance.vm_kibana.*.network_interface.0.access_config.0.nat_ip, google_compute_instance.vm_kibana.tags.*)
 }

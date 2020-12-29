@@ -1,0 +1,5 @@
+---
+# defaults file for Java
+#
+java_version: default-jdk
+java_gpg_key: kk

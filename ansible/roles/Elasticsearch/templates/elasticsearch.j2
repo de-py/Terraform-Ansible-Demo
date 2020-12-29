@@ -1,0 +1,50 @@
+# ======================== Elasticsearch Configuration =========================
+#
+# NOTE: Elasticsearch comes with reasonable defaults for most settings.
+#       Before you set out to tweak and tune the configuration, make sure you
+#       understand what are you trying to accomplish and the consequences.
+#
+# The primary way of configuring a node is via this file. This template lists
+# the most important settings you may want to configure for a production cluster.
+#
+# Please consult the documentation for further information on configuration options:
+# https://www.elastic.co/guide/en/elasticsearch/reference/index.html
+#
+# ------------------------------------ Node ------------------------------------
+#
+# Use a descriptive name for the node:
+#
+node.name: {{ node_name }}
+#
+
+# ----------------------------------- Paths ------------------------------------
+#
+# Path to directory where to store the data (separate multiple locations by comma):
+#
+path.data: {{ path_data }}
+#
+# Path to log files:
+#
+path.logs: {{ path_logs }} 
+# ----------------------------------- Memory -----------------------------------
+#
+#
+# ---------------------------------- Network -----------------------------------
+#
+# Set the bind address to a specific IP (IPv4 or IPv6):
+#
+network.host: {{ network_host }} 
+# Set a custom port for HTTP:
+#
+#http.port: 9200
+#
+#
+# --------------------------------- Discovery ----------------------------------
+#
+# ---------------------------------- Gateway -----------------------------------
+#
+# ---------------------------------- Various -----------------------------------
+#
+#
+#Don't try to join a cluser
+discovery.type: {{ discovery_type }}

@@ -1,0 +1,8 @@
+---
+# defaults file for Elasticsearch
+
+node_name: node-1
+path_data: /var/lib/elasticsearch
+path_logs: /var/log/elasticsearch
+network_host: _site_
+discovery_type: single-node
