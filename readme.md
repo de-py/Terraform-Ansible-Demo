@@ -25,7 +25,7 @@ This section is to keep track of where data must be updated before running terra
 
 1. Up Inventory from Terraform Output
 2. In directory ./elastic/kibana.yml, update kibana with local IP of elastic server for ```elasticsearch.hosts: ["http://<changeme>:9200"]```
-3. In firewall.tf, update source_range on kibana-port to be the NAT address. Temporary until vpn is stood up. Temporary lab either way. 
+3. In firewall.tf, update source_range on kibana-port to be the NAT address of the server that's browsing to Kibana. 
 
 
 ## Todo
@@ -33,3 +33,4 @@ This section is to keep track of where data must be updated before running terra
 - [ ] Configure authentication on kibana/elastic 
 - [ ] Create script to automate terraform output to ansible inventory
 - [ ] Make ELK config files into templates and pull IPs into variables that can be updated with a script easily
+- [ ] Delete old project files
