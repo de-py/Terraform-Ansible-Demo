@@ -32,6 +32,6 @@ This section is to keep track of where data must be updated before running terra
 ## Todo
 - [ ] Create kibana.yml with server.host update
 - [ ] Configure authentication on kibana/elastic 
-- [*] Create script to automate terraform output to ansible inventory
+- [X] Create script to automate terraform output to ansible inventory
 - [ ] Make ELK config files into templates and pull IPs into variables that can be updated with a script easily
 - [ ] Delete old project files
