@@ -23,7 +23,7 @@ Wherever possible this project will use infrastructure as code and native config
 ## Pre-Deployment Steps
 This section is to keep track of where data must be updated before running terraform apply or ansible-playbook. These steps will need to be automated in a way that meets the project guidelines.
 
-1. After Terraform Apply, Run Update Inventory Script in Terraform Config File
+1. After Terraform Apply, Run Update Inventory Script in Terraform Config Folder
 2. Before running an ansible-playbook, ping all hosts to update the ssh hosts file. Playbook doesn't honor the verify=false check but ping will fix this.
 3. In directory ./elastic/kibana.yml, update kibana with local IP of elastic server for ```elasticsearch.hosts: ["http://<changeme>:9200"]```
 4. In firewall.tf, update source_range on kibana-port to be the NAT address of the server that's browsing to Kibana. 
